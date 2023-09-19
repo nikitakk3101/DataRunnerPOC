@@ -4,15 +4,15 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 074070141186.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login --region us-east-1 | docker login --username AWS --password-stdin 074070141186.dkr.ecr.us-east-1.amazonaws.com
 
   build:
     commands:
       - echo Building the Docker image...
-      - docker build -t data-runner-poc .
+      - docker build -t data-runner .
 
   post_build:
     commands:
       - echo Pushing the Docker image to ECR...
-      - docker tag data-runner-poc:latest <your-account-id>.dkr.ecr.us-east-1.amazonaws.com/<your-repo-name>:latest
+      - docker tag data-runner:latest 074070141186.dkr.ecr.us-east-1.amazonaws.com/data-runner-poc:latest
       - docker push 074070141186.dkr.ecr.us-east-1.amazonaws.com/data-runner-poc:latest
