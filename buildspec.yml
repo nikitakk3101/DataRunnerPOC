@@ -2,7 +2,6 @@ version: 0.2
 phases:
   install:
     commands:
-<<<<<<< HEAD
       - echo "Install Phase - if you need additional package, add it in this stage"
   pre_build:
       commands:
@@ -52,18 +51,3 @@ artifacts:
   files: 
     - build.json   
     - manifests/*
-=======
-      - echo Logging in to Amazon ECR....
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 074070141186.dkr.ecr.us-east-1.amazonaws.com
-
-  build:
-    commands:
-      - echo Building the Docker image....
-      - docker build -t data-runner .
-
-  post_build:
-    commands:
-      - echo Pushing the Docker image to ECR....
-      - docker tag data-runner:latest 074070141186.dkr.ecr.us-east-1.amazonaws.com/data-runner-poc:latest
-      - docker push 074070141186.dkr.ecr.us-east-1.amazonaws.com/data-runner-poc:latest
->>>>>>> f47b710be792b9f0865c8bd0458a7d94832026e5
